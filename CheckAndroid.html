@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Device Checker</title>
+    <link rel="stylesheet" href="/Cloud/Block.css">
+<script src="/Cloud/BlockScript.js"></script>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/Cloud/Ficons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/Cloud/Ficons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/Cloud/Ficons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/Cloud/Ficons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/Cloud/Ficons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/Cloud/Ficons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/Cloud/Ficons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/Cloud/Ficons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/Cloud/Ficons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/Cloud/Ficons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/Cloud/Ficons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/Cloud/Ficons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/Cloud/Ficons/favicon-16x16.png">
+    <link rel="manifest" href="/Cloud/Ficons/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/Cloud/Ficons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="/Cloud/Main.css">
+    <style>
+        /* CSS content from the provided stylesheet */
+        body, h1, h2, h3, h4, p, ul, li, a {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+            margin: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        .loading-screen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+        .loading-screen svg {
+            margin-bottom: 1rem;
+        }
+        .result {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+        .result h2 {
+            margin-bottom: 1rem;
+        }
+        .result button {
+            background-color: #007aff;
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .result button:hover {
+            background-color: #005bb5;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-screen" id="loadingScreen">
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="6em" height="6em" viewBox="0 0 24 24">
+                <rect width="10" height="10" x="1" y="1" fill="#1e90ff" rx="1">
+                    <animate id="svgSpinnersBlocksShuffle30" fill="freeze" attributeName="x" begin="0;svgSpinnersBlocksShuffle3b.end" dur="0.2s" values="1;13" />
+                    <animate id="svgSpinnersBlocksShuffle31" fill="freeze" attributeName="y" begin="svgSpinnersBlocksShuffle38.end" dur="0.2s" values="1;13" />
+                    <animate id="svgSpinnersBlocksShuffle32" fill="freeze" attributeName="x" begin="svgSpinnersBlocksShuffle39.end" dur="0.2s" values="13;1" />
+                    <animate id="svgSpinnersBlocksShuffle33" fill="freeze" attributeName="y" begin="svgSpinnersBlocksShuffle3a.end" dur="0.2s" values="13;1" />
+                </rect>
+                <rect width="10" height="10" x="1" y="13" fill="#1e90ff" rx="1">
+                    <animate id="svgSpinnersBlocksShuffle34" fill="freeze" attributeName="y" begin="svgSpinnersBlocksShuffle30.end" dur="0.2s" values="13;1" />
+                    <animate id="svgSpinnersBlocksShuffle35" fill="freeze" attributeName="x" begin="svgSpinnersBlocksShuffle31.end" dur="0.2s" values="1;13" />
+                    <animate id="svgSpinnersBlocksShuffle36" fill="freeze" attributeName="y" begin="svgSpinnersBlocksShuffle32.end" dur="0.2s" values="1;13" />
+                    <animate id="svgSpinnersBlocksShuffle37" fill="freeze" attributeName="x" begin="svgSpinnersBlocksShuffle33.end" dur="0.2s" values="13;1" />
+                </rect>
+                <rect width="10" height="10" x="13" y="13" fill="#1e90ff" rx="1">
+                    <animate id="svgSpinnersBlocksShuffle38" fill="freeze" attributeName="x" begin="svgSpinnersBlocksShuffle34.end" dur="0.2s" values="13;1" />
+                    <animate id="svgSpinnersBlocksShuffle39" fill="freeze" attributeName="y" begin="svgSpinnersBlocksShuffle35.end" dur="0.2s" values="13;1" />
+                    <animate id="svgSpinnersBlocksShuffle3a" fill="freeze" attributeName="x" begin="svgSpinnersBlocksShuffle36.end" dur="0.2s" values="1;13" />
+                    <animate id="svgSpinnersBlocksShuffle3b" fill="freeze" attributeName="y" begin="svgSpinnersBlocksShuffle37.end" dur="0.2s" values="1;13" />
+                </rect>
+            </svg>
+        
+        </div>
+    </div>
+    <div class="result" id="result">
+        <h2 id="deviceInfo"></h2>
+        <button onclick="goBack()">Go Back</button>
+    </div>
+
+    <script>
+        function getDeviceInfo() {
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            if (/android/i.test(userAgent)) {
+                window.location.href = "Downloadingapkfile.html";
+            } else {
+                const deviceModel = navigator.platform || "Unknown device";
+                return deviceModel;
+            }
+        }
+
+        function goBack() {
+            window.location.href = "DownloadApp.html#download";
+        }
+
+        setTimeout(() => {
+            const deviceModel = getDeviceInfo();
+            if (deviceModel) {
+                document.getElementById('loadingScreen').style.display = 'none';
+                document.getElementById('result').style.display = 'block';
+                document.getElementById('deviceInfo').innerText = `Current device is: ${deviceModel}`;
+            }
+        }, 5000);
+    </script>
+</body>
+</html>
